@@ -1,21 +1,18 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart';
-import './story.dart';
-import 'property_widgets/properties.dart' as p;
+import 'package:flutter/widgets.dart';
+import '../property_widgets/properties.dart' as p;
+import '../dashbook.dart';
 
-typedef OnPropertyChange = void Function();
-
-class _PropertiesContainer extends StatefulWidget {
+class PropertiesContainer extends StatefulWidget {
   final Chapter currentChapter;
   final OnPropertyChange onPropertyChange;
 
-  _PropertiesContainer({this.currentChapter, this.onPropertyChange});
+  PropertiesContainer({this.currentChapter, this.onPropertyChange});
 
   @override
   State createState() => _PropertiesContainerState();
 }
 
-class _PropertiesContainerState extends State<_PropertiesContainer> {
+class _PropertiesContainerState extends State<PropertiesContainer> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
