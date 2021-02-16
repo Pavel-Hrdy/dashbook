@@ -15,7 +15,7 @@ class DashbookBodyWeb extends StatefulWidget {
 class _DashbookBodyWebState extends State<DashbookBodyWeb> {
   Chapter _currentChapter;
   bool _isStoriesOpen = false;
-
+  bool _areCommentsOpen = false;
   @override
   void initState() {
     super.initState();
@@ -34,6 +34,12 @@ class _DashbookBodyWebState extends State<DashbookBodyWeb> {
   void _toggleStoriesList() {
     setState(() {
       _isStoriesOpen = !_isStoriesOpen;
+    });
+  }
+
+  void _toggleComments() {
+    setState(() {
+      _areCommentsOpen = !_areCommentsOpen;
     });
   }
 
@@ -112,6 +118,31 @@ class _DashbookBodyWebState extends State<DashbookBodyWeb> {
           ),
         );
 
+        final _comments = <Widget>[];
+
+        if (_areCommentsOpen) {
+          _comments.add(
+            Positioned.fill(
+              child: Comments(
+                currentChapter: _currentChapter,
+              ),
+            ),
+          );
+        }
+
+        _comments.add(
+          Positioned(
+            top: 5,
+            right: 10,
+            child: GestureDetector(
+              child: Icon(
+                _areCommentsOpen ? Icons.navigate_next : Icons.navigate_before,
+              ),
+              onTap: _toggleComments,
+            ),
+          ),
+        );
+
         return Row(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -130,6 +161,18 @@ class _DashbookBodyWebState extends State<DashbookBodyWeb> {
             Expanded(
               flex: 8,
               child: body,
+            ),
+            Expanded(
+              flex: _areCommentsOpen ? 8 : null,
+              child: Container(
+                width: _areCommentsOpen ? null : 45,
+                decoration: BoxDecoration(
+                  border: Border(
+                    right: BorderSide(color: Theme.of(context).dividerColor),
+                  ),
+                ),
+                child: Stack(children: _comments),
+              ),
             ),
           ],
         );

@@ -6,11 +6,7 @@ import 'dashbook.dart';
 typedef OnSelectChapter = Function(Chapter chapter);
 typedef OnPropertyChange = void Function();
 
-enum CurrentView {
-  STORIES,
-  CHAPTER,
-  PROPERTIES,
-}
+enum CurrentView { STORIES, CHAPTER, PROPERTIES, COMMENTS }
 
 class Dashbook extends StatelessWidget {
   final List<Story> stories = [];

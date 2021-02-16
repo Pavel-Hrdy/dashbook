@@ -34,26 +34,36 @@ class _DashbookBodyMobileState extends State<DashbookBodyMobile> {
   @override
   Widget build(BuildContext context) {
     Widget view;
-    if (_currentView == CurrentView.CHAPTER) {
-      view = _currentChapter != null
-          ? ChapterPreview(
-              currentChapter: _currentChapter,
-              key: Key(_currentChapter.id),
-            )
-          : null;
-    } else if (_currentView == CurrentView.STORIES) {
-      view = StoriesList(
-        stories: widget.stories,
-        selectedChapter: _currentChapter,
-        onSelectChapter: (chapter) {
-          setState(() {
-            _currentChapter = chapter;
-            _currentView = CurrentView.CHAPTER;
-          });
-        },
-      );
-    } else {
-      view = PropertiesContainer(currentChapter: _currentChapter);
+
+    switch (_currentView) {
+      case CurrentView.STORIES:
+        view = StoriesList(
+          stories: widget.stories,
+          selectedChapter: _currentChapter,
+          onSelectChapter: (chapter) {
+            setState(() {
+              _currentChapter = chapter;
+              _currentView = CurrentView.CHAPTER;
+            });
+          },
+        );
+        break;
+      case CurrentView.CHAPTER:
+        view = _currentChapter != null
+            ? ChapterPreview(
+                currentChapter: _currentChapter,
+                key: Key(_currentChapter.id),
+              )
+            : null;
+        break;
+      case CurrentView.PROPERTIES:
+        view = PropertiesContainer(currentChapter: _currentChapter);
+        break;
+      case CurrentView.COMMENTS:
+        view = Comments(
+          currentChapter: _currentChapter,
+        );
+        break;
     }
 
     return Column(children: [
@@ -90,6 +100,22 @@ class _DashbookBodyMobileState extends State<DashbookBodyMobile> {
                 onTap: () {
                   setState(() {
                     _currentView = CurrentView.CHAPTER;
+                  });
+                },
+              ),
+            ),
+            Expanded(
+              child: Link(
+                label: 'Comments',
+                textAlign: TextAlign.center,
+                textStyle: TextStyle(
+                  fontWeight: _currentView == CurrentView.COMMENTS
+                      ? FontWeight.bold
+                      : FontWeight.normal,
+                ),
+                onTap: () {
+                  setState(() {
+                    _currentView = CurrentView.COMMENTS;
                   });
                 },
               ),
