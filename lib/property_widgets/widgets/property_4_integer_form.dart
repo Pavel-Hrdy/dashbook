@@ -126,7 +126,7 @@ class _FourIntegerFormState extends State<FourIntegerForm> {
                 _firstFieldController.text,
                 _secondFieldController.text,
                 _thirdFieldController.text,
-                _fourthFieldController.text);
+                _fourthFieldController.text) as bool;
 
             if (validValues) {
               setState(() {

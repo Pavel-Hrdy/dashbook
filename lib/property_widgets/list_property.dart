@@ -21,15 +21,15 @@ class ListPropertyState extends State<ListPropertyWidget> {
   Widget build(BuildContext context) {
     return PropertyScaffold(
       label: widget.property.name,
-      child: DropdownButton(
+      child: DropdownButton<dynamic>(
         value: widget.property.getValue(),
-        onChanged: (value) {
+        onChanged: (dynamic value) {
           widget.property.value = value;
           widget.onChanged(widget.property);
         },
         items: widget.property.list
             .map(
-              (value) => DropdownMenuItem(
+              (dynamic value) => DropdownMenuItem<dynamic>(
                 value: value,
                 child: Text(value.toString()),
               ),

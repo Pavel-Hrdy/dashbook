@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:dashbook/dashbook.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -33,7 +31,7 @@ class _CommentsState extends State<Comments> {
         _markdownString = value;
         _isLoading = false;
       });
-    }, onError: (_) {
+    }, onError: (dynamic _) {
       setState(() {
         _markdownString = null;
         _isLoading = false;

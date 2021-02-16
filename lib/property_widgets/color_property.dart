@@ -29,7 +29,7 @@ class ColorPropertyState extends State<ColorProperty> {
   }
 
   // raise the [showDialog] widget
-  Future<dynamic> show() => showDialog(
+  Future<dynamic> show() => showDialog<void>(
         context: context,
         builder: (_) => PropertyDialog(
           title: 'Pick a color!',

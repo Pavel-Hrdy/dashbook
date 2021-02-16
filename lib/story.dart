@@ -13,7 +13,7 @@ class Property<T> {
   T getValue() => value ?? defaultValue;
 
   @override
-  toString() => "$name - ${getValue()}";
+  toString() => '$name - ${getValue()}';
 }
 
 class ListProperty<T> extends Property<T> {
@@ -30,7 +30,7 @@ class DashbookContext {
 
   String textProperty(String name, String defaultValue) {
     if (properties.containsKey(name)) {
-      return properties[name].getValue();
+      return properties[name].getValue() as String;
     } else {
       final property = Property<String>(name, defaultValue);
       properties[name] = property;
@@ -41,7 +41,7 @@ class DashbookContext {
 
   double numberProperty(String name, double defaultValue) {
     if (properties.containsKey(name)) {
-      return properties[name].getValue();
+      return properties[name].getValue() as double;
     } else {
       final property = Property<double>(name, defaultValue);
       properties[name] = property;
@@ -52,7 +52,7 @@ class DashbookContext {
 
   bool boolProperty(String name, bool defaultValue) {
     if (properties.containsKey(name)) {
-      return properties[name].getValue();
+      return properties[name].getValue() as bool;
     } else {
       final property = Property<bool>(name, defaultValue);
       properties[name] = property;
@@ -63,7 +63,7 @@ class DashbookContext {
 
   Color colorProperty(String name, Color defaultValue) {
     if (properties.containsKey(name)) {
-      return properties[name].getValue();
+      return properties[name].getValue() as Color;
     } else {
       final property = Property<Color>(name, defaultValue);
       properties[name] = property;
@@ -74,7 +74,7 @@ class DashbookContext {
 
   T listProperty<T>(String name, T defaultValue, List<T> list) {
     if (properties.containsKey(name)) {
-      return properties[name].getValue();
+      return properties[name].getValue() as T;
     } else {
       final property = ListProperty<T>(name, defaultValue, list);
       properties[name] = property;
@@ -85,7 +85,7 @@ class DashbookContext {
 
   EdgeInsets edgeInsetsProperty(String name, EdgeInsets defaultValue) {
     if (properties.containsKey(name)) {
-      return properties[name].getValue();
+      return properties[name].getValue() as EdgeInsets;
     } else {
       final property = Property<EdgeInsets>(name, defaultValue);
       properties[name] = property;
@@ -96,7 +96,7 @@ class DashbookContext {
 
   BorderRadius borderRadiusProperty(String name, BorderRadius defaultValue) {
     if (properties.containsKey(name)) {
-      return properties[name].getValue();
+      return properties[name].getValue() as BorderRadius;
     } else {
       final property = Property<BorderRadius>(name, defaultValue);
       properties[name] = property;
